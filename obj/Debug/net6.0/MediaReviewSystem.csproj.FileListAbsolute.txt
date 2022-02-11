@@ -1,0 +1,15 @@
+C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\bin\Debug\net6.0\MediaReviewSystem.exe
+C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\bin\Debug\net6.0\MediaReviewSystem.deps.json
+C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\bin\Debug\net6.0\MediaReviewSystem.runtimeconfig.json
+C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\bin\Debug\net6.0\MediaReviewSystem.dll
+C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\bin\Debug\net6.0\ref\MediaReviewSystem.dll
+C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\bin\Debug\net6.0\MediaReviewSystem.pdb
+C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\obj\Debug\net6.0\MediaReviewSystem.csproj.AssemblyReference.cache
+C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\obj\Debug\net6.0\MediaReviewSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\obj\Debug\net6.0\MediaReviewSystem.AssemblyInfoInputs.cache
+C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\obj\Debug\net6.0\MediaReviewSystem.AssemblyInfo.cs
+C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\obj\Debug\net6.0\MediaReviewSystem.csproj.CoreCompileInputs.cache
+C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\obj\Debug\net6.0\MediaReviewSystem.dll
+C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\obj\Debug\net6.0\ref\MediaReviewSystem.dll
+C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\obj\Debug\net6.0\MediaReviewSystem.pdb
+C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\obj\Debug\net6.0\MediaReviewSystem.genruntimeconfig.cache

@@ -11,14 +11,22 @@ namespace MediaReviewSystem
         public string? Title { get; set; }
         public string? Genre { get; set; }
         public DateOnly ReleaseDate { get; set; }
+        public string? synopsis { get; set; }
 
-        public List<Director>? Directors { get; set; }
-        public List<Actor>? Actors { get; set; }
-        public List<Writer>? Writers { get; set; }
+        public List<Director>? Directors { get; private set; }
+        public List<Actor>? Actors { get; private set; }
+        public List<Writer>? Writers { get; private set; }
 
-        public VideoMedia()
+        public VideoMedia(string title)
         {
-
+            if (title == null)
+            {
+                Title = "EMPTY";
+            }
+            else
+            {
+                Title = title;
+            }
         }
 
 

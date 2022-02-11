@@ -9,17 +9,25 @@ namespace MediaReviewSystem
     public class VideoMediaEntry
     {
         public VideoMedia Video { get; private set; }
-        public List<VideoMediaReview> reviews;
+        public double AverageRating { get; private set; }
+        public List<VideoMediaReview> Reviews { get; private set; }
 
         public VideoMediaEntry(VideoMedia video)
         {
             Video = video;
-            reviews = new List<VideoMediaReview>();
+            Reviews = new List<VideoMediaReview>();
         }
 
-        public void AddReviewToList(VideoMediaReview review)
+        public void AddReviewToReviewsList(VideoMediaReview review)
         {
-            reviews.Add(review);
+            Reviews.Add(review);
+
+            foreach(VideoMediaReview aver in Reviews)
+            {
+                AverageRating = aver.GetRating();
+            }
+
+            AverageRating /= Reviews.Count;
         }
     }
 }

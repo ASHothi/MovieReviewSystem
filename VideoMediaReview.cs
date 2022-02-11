@@ -19,7 +19,6 @@ namespace MediaReviewSystem
 
         public VideoMediaReview(int rating) : this(rating, "EMPTY")
         {
-
         }
 
         public void SetRating(int rating)

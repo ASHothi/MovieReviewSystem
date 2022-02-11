@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "MediaReviewSystem/1.0.0": {
+        "runtime": {
+          "MediaReviewSystem.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MediaReviewSystem/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

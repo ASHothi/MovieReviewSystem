@@ -8,5 +8,10 @@ namespace MediaReviewSystem
 {
     public class Actor : VideoMediaCreator
     {
+        public Actor(string name) : base(name)
+        {
+        }
+
+        
     }
 }

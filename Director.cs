@@ -8,5 +8,8 @@ namespace MediaReviewSystem
 {
     public class Director : VideoMediaCreator
     {
+        public Director(string name) : base(name)
+        {
+        }
     }
 }

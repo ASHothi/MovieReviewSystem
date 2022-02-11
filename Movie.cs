@@ -9,5 +9,10 @@ namespace MediaReviewSystem
     public class Movie : VideoMedia
     {
         public TimeOnly RunTime { get; set; }
+
+        public Movie(string title) : base(title)
+        {
+        }
+
     }
 }

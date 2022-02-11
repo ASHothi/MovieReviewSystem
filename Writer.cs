@@ -8,5 +8,8 @@ namespace MediaReviewSystem
 {
     public class Writer : VideoMediaCreator
     {
+        public Writer(string name) : base(name)
+        {
+        }
     }
 }
