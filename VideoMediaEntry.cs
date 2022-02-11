@@ -8,12 +8,18 @@ namespace MediaReviewSystem
 {
     public class VideoMediaEntry
     {
-        public Movie Movie { get; private set; }
+        public VideoMedia Video { get; private set; }
+        public List<VideoMediaReview> reviews;
 
-        public VideoMediaEntry(Movie movie)
+        public VideoMediaEntry(VideoMedia video)
         {
-            this.Movie = movie;
+            Video = video;
+            reviews = new List<VideoMediaReview>();
         }
 
+        public void AddReviewToList(VideoMediaReview review)
+        {
+            reviews.Add(review);
+        }
     }
 }
