@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-namespace MediaReviewSystem;
+﻿namespace MediaReviewSystem;
 
 class Program 
 { 
@@ -7,10 +6,13 @@ class Program
     {
         
         List<VideoMediaEntry> videoMediaEntries = new List<VideoMediaEntry>();
+
+        /// this method is only used for testing
         addEntries(videoMediaEntries);
+        ///
 
         Console.WriteLine("Hi what movie/tvShow do you want to search for?");
-        string title = Console.ReadLine();
+        string title = Console.ReadLine().ToLower();
 
         VideoMediaEntry videoEntry;
         VideoMedia movie;
@@ -22,11 +24,39 @@ class Program
 
             if (movie.Title.Equals(title))
             {
-                videoEntry = videoMediaEntry;
-                movie = videoEntry.Video;
-                AddVideoReview(videoEntry);
-                ViewVideoReviews(videoEntry);
+                bool repeat = true;
 
+                while (repeat)
+                {
+                    videoEntry = videoMediaEntry;
+                    movie = videoEntry.Video;
+
+                    Console.WriteLine("What do you want to do?");
+                    Console.WriteLine("View details = 1");
+                    Console.WriteLine("Add a review = 2");
+                    Console.WriteLine("View Reviews = 3");
+                    Console.WriteLine("exit = 0");
+
+
+                    switch (Console.ReadLine())
+                    {
+                        case "0":
+                            repeat = false;
+                            break;
+                        case "1":
+                            // TODO IMPLEMENT DETAILS FOR THE MOVIE
+                            break;
+                        case "2":
+                            AddVideoReview(videoEntry);
+                            break;
+                        case "3":
+                            ViewVideoReviews(videoEntry);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                
                 break;
             }
             else
@@ -52,15 +82,11 @@ class Program
 
                 entry.Reviews.Add(review);
             }
-            else
-            {
-                return;
-            }
         }
 
         void ViewVideoReviews(VideoMediaEntry entry)
         {
-            Console.WriteLine("Would you like to view the reviews for this movie?");
+            Console.WriteLine("Would you like to view the reviews for this movie? (y/n)");
             string response = Console.ReadLine();
 
             if (response.Equals("y"))
@@ -72,10 +98,6 @@ class Program
                     Console.WriteLine(reviews.WritenReview);
                     Console.WriteLine("- - - - - - - - -");
                 }
-            }
-            else
-            {
-                return;
             }
         }
 
@@ -93,4 +115,10 @@ class Program
         }
     }
 }
+
+// TODO search by actor/director/writer and genre
+// TODO allow user to add a movie if the one they are searching for doesn't exist
+// TODO Implement CASE 1 in the switch statement 
+// TODO Add user class and the serach class to remove complexity in this file
+// TODO Validate Inputs 
 
