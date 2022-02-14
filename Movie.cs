@@ -14,5 +14,16 @@ namespace MediaReviewSystem
         {
         }
 
+        public override string ToString()
+        {
+            string decription =
+                "Title: " + Title + "\n" +
+                "Genre: " + Genre + "\n" +
+                "Release date: " + ReleaseDate.ToString() + "\n" +
+                "RunTime: " + RunTime.ToString() + "\n" +
+                "Synopsis: " + synopsis + "\n";
+
+            return decription;
+        }
     }
 }

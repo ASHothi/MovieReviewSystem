@@ -37,14 +37,13 @@ class Program
                     Console.WriteLine("View Reviews = 3");
                     Console.WriteLine("exit = 0");
 
-
                     switch (Console.ReadLine())
                     {
                         case "0":
                             repeat = false;
                             break;
                         case "1":
-                            // TODO IMPLEMENT DETAILS FOR THE MOVIE
+                            Console.WriteLine(movie.ToString());
                             break;
                         case "2":
                             AddVideoReview(videoEntry);
@@ -67,37 +66,25 @@ class Program
 
         void AddVideoReview(VideoMediaEntry entry)
         {
-            Console.WriteLine("would you like to add a review to this? (y/n)");
-            string response = Console.ReadLine();
+            Console.WriteLine("What rating out of ten would you give the movie?");
+            int score = int.Parse(Console.ReadLine());
 
-            if (response.Equals("y"))
-            {
-                Console.WriteLine("What rating out of ten would you give the movie?");
-                int score = int.Parse(Console.ReadLine());
+            Console.WriteLine("please leave a written review below:");
+            string writtenReview = Console.ReadLine();
 
-                Console.WriteLine("please leave a written review below:");
-                string writtenReview = Console.ReadLine();
+            VideoMediaReview review = new VideoMediaReview(score, writtenReview);
 
-                VideoMediaReview review = new VideoMediaReview(score, writtenReview);
-
-                entry.Reviews.Add(review);
-            }
+            entry.Reviews.Add(review);
         }
 
         void ViewVideoReviews(VideoMediaEntry entry)
         {
-            Console.WriteLine("Would you like to view the reviews for this movie? (y/n)");
-            string response = Console.ReadLine();
-
-            if (response.Equals("y"))
+            Console.WriteLine("- - - - - - - - -");
+            foreach (VideoMediaReview reviews in entry.Reviews)
             {
+                Console.WriteLine("Rating " + reviews.GetRating() + "/10");
+                Console.WriteLine(reviews.WritenReview);
                 Console.WriteLine("- - - - - - - - -");
-                foreach (VideoMediaReview reviews in entry.Reviews)
-                {
-                    Console.WriteLine("Rating " + reviews.GetRating() + "/10");
-                    Console.WriteLine(reviews.WritenReview);
-                    Console.WriteLine("- - - - - - - - -");
-                }
             }
         }
 
@@ -107,6 +94,8 @@ class Program
 
             Movie movie = new Movie("dark knight");
             movie.Genre = "action";
+            movie.RunTime = new TimeOnly(2, 32);
+            movie.synopsis = "Batman punches Joker";
 
             VideoMediaEntry entry = new VideoMediaEntry(movie);
             entry.Reviews.Add(testReview);
