@@ -8,7 +8,7 @@ namespace MediaReviewSystem
 {
     public class VideoMediaReview
     {
-        public int Rating;
+        private int Rating;
         public string WritenReview { get; set; }
 
         public VideoMediaReview(int rating, string writtenReview)
@@ -40,6 +40,15 @@ namespace MediaReviewSystem
         public int GetRating()
         {
             return Rating;
-        } 
+        }
+
+        public override string ToString()
+        {
+            string str =
+                "Rating: " + Rating + "/10\n" +
+                "Written review:\n" + WritenReview;
+
+            return str;
+        }
     }
 }

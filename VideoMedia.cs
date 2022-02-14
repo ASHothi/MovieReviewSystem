@@ -13,6 +13,8 @@ namespace MediaReviewSystem
         public DateOnly ReleaseDate { get; set; }
         public string? synopsis { get; set; }
 
+        public int AgeRating { get; set; }
+
         public List<Director>? Directors { get; private set; }
         public List<Actor>? Actors { get; private set; }
         public List<Writer>? Writers { get; private set; }

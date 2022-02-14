@@ -21,10 +21,10 @@ namespace MediaReviewSystem
                 "Title: " + Title + "\n" +
                 "Genre: " + Genre + "\n" +
                 "Release date: " + ReleaseDate.ToString() + "\n" +
+                "Age Rating: " + AgeRating + "\n" +
                 "Number of seasons: " + numOfSeasons + "\n" +
                 "Number of episodes: " + numOfEpisodes + "\n" +
-                "Synopsis: " + synopsis + "\n";
-
+                "Synopsis: " + synopsis;
 
             return decription;
         }

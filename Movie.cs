@@ -21,7 +21,8 @@ namespace MediaReviewSystem
                 "Genre: " + Genre + "\n" +
                 "Release date: " + ReleaseDate.ToString() + "\n" +
                 "RunTime: " + RunTime.ToString() + "\n" +
-                "Synopsis: " + synopsis + "\n";
+                "Age Rating: " + AgeRating + "\n" +
+                "Synopsis: " + synopsis;
 
             return decription;
         }

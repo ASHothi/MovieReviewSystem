@@ -1,113 +1,144 @@
 ﻿namespace MediaReviewSystem;
 
-class Program 
-{ 
+public class Program 
+{
+    public List<VideoMediaEntry> videoMediaEntries = new List<VideoMediaEntry>();
+
+
     public static void Main(string[] args)
     {
-        
-        List<VideoMediaEntry> videoMediaEntries = new List<VideoMediaEntry>();
-
+        Program program = new Program();
+       
         /// this method is only used for testing
-        addEntries(videoMediaEntries);
+        program.AddEntries();
         ///
 
-        Console.WriteLine("Hi what movie/tvShow do you want to search for?");
-        string title = Console.ReadLine().ToLower();
+        program.GiveOptions();
+    }
 
-        VideoMediaEntry videoEntry;
-        VideoMedia movie;
+    void GiveOptions()
+    {
+        bool repeat = true;
 
+        while (repeat)
+        {
+            Console.WriteLine("What do you want to do?");
+            Console.WriteLine("Search for movie/TV show = 1");
+            Console.WriteLine("Search through genre = 2");
+            Console.WriteLine("Search for Actor/Writer/Director = 3");
+            Console.WriteLine("exit = 0");
+
+            switch (Console.ReadLine())
+            {
+                case "0":
+                    repeat = false;
+                    break;
+                case "1":
+                    Console.WriteLine("What movie/tvShow do you want to search for?");
+                    VideoOptions(VideoSearch(videoMediaEntries, Console.ReadLine()));
+                    break;
+                case "2":
+                    // TODO Add search by genres
+                    break;
+                case "3":
+                    // TODO Add search for people
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    VideoMediaEntry VideoSearch(List<VideoMediaEntry> videoEntries, string title)
+    {
         foreach (VideoMediaEntry videoMediaEntry in videoMediaEntries)
         {
-            videoEntry = videoMediaEntry;
-            movie = videoEntry.Video;
-
-            if (movie.Title.Equals(title))
+            if (videoMediaEntry.Video.Title.Equals(title))
             {
                 bool repeat = true;
+                return videoMediaEntry;
+            }
+        }
 
-                while (repeat)
+        Console.WriteLine("Sorry what you are looking for does not exist");
+        return null;
+    }
+
+    void VideoOptions(VideoMediaEntry videoMediaEntry)
+    {
+        if (videoMediaEntry != null)
+        {
+            bool repeat = true;
+
+            while (repeat)
+            {
+                Console.WriteLine("What do you want to do?");
+                Console.WriteLine("View details = 1");
+                Console.WriteLine("Add a review = 2");
+                Console.WriteLine("View Reviews = 3");
+                Console.WriteLine("exit = 0");
+
+                switch (Console.ReadLine())
                 {
-                    videoEntry = videoMediaEntry;
-                    movie = videoEntry.Video;
-
-                    Console.WriteLine("What do you want to do?");
-                    Console.WriteLine("View details = 1");
-                    Console.WriteLine("Add a review = 2");
-                    Console.WriteLine("View Reviews = 3");
-                    Console.WriteLine("exit = 0");
-
-                    switch (Console.ReadLine())
-                    {
-                        case "0":
-                            repeat = false;
-                            break;
-                        case "1":
-                            Console.WriteLine(movie.ToString());
-                            break;
-                        case "2":
-                            AddVideoReview(videoEntry);
-                            break;
-                        case "3":
-                            ViewVideoReviews(videoEntry);
-                            break;
-                        default:
-                            break;
-                    }
+                    case "0":
+                        repeat = false;
+                        break;
+                    case "1":
+                        Console.WriteLine(videoMediaEntry.Video.ToString());
+                        break;
+                    case "2":
+                        AddVideoReview(videoMediaEntry);
+                        break;
+                    case "3":
+                        ViewVideoReviews(videoMediaEntry);
+                        break;
+                    default:
+                        break;
                 }
-                
-                break;
             }
-            else
-            {
-                Console.WriteLine("Sorry what you are looking for does not exist");
-            }   
         }
+    }
+    void AddVideoReview(VideoMediaEntry entry)
+    {
+        Console.WriteLine("What rating out of ten would you give the movie?");
+        int score = int.Parse(Console.ReadLine());
 
-        void AddVideoReview(VideoMediaEntry entry)
+        Console.WriteLine("please leave a written review below:");
+        string writtenReview = Console.ReadLine();
+
+        VideoMediaReview review = new VideoMediaReview(score, writtenReview);
+
+        entry.Reviews.Add(review);
+    }
+
+    void ViewVideoReviews(VideoMediaEntry entry)
+    {
+        Console.WriteLine("- - - - - - - - -");
+        foreach (VideoMediaReview reviews in entry.Reviews)
         {
-            Console.WriteLine("What rating out of ten would you give the movie?");
-            int score = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("please leave a written review below:");
-            string writtenReview = Console.ReadLine();
-
-            VideoMediaReview review = new VideoMediaReview(score, writtenReview);
-
-            entry.Reviews.Add(review);
-        }
-
-        void ViewVideoReviews(VideoMediaEntry entry)
-        {
+            Console.WriteLine(reviews.ToString());
             Console.WriteLine("- - - - - - - - -");
-            foreach (VideoMediaReview reviews in entry.Reviews)
-            {
-                Console.WriteLine("Rating " + reviews.GetRating() + "/10");
-                Console.WriteLine(reviews.WritenReview);
-                Console.WriteLine("- - - - - - - - -");
-            }
         }
+    }
 
-        void addEntries(List<VideoMediaEntry> videolist)
-        {
-            VideoMediaReview testReview = new VideoMediaReview(5, "Movie Bad :(");
+    void AddEntries()
+    {
+        VideoMediaReview testReview = new VideoMediaReview(5, "Movie Bad :(");
 
-            Movie movie = new Movie("dark knight");
-            movie.Genre = "action";
-            movie.RunTime = new TimeOnly(2, 32);
-            movie.synopsis = "Batman punches Joker";
+        Movie movie = new Movie("dark knight");
+        movie.Genre = "action";
+        movie.RunTime = new TimeOnly(2, 32);
+        movie.synopsis = "Batman punches Joker";
 
-            VideoMediaEntry entry = new VideoMediaEntry(movie);
-            entry.Reviews.Add(testReview);
+        VideoMediaEntry entry = new VideoMediaEntry(movie);
+        entry.Reviews.Add(testReview);
 
-            videolist.Add(entry);
-        }
+        videoMediaEntries.Add(entry);
     }
 }
 
 // TODO search by actor/director/writer and genre
 // TODO allow user to add a movie if the one they are searching for doesn't exist
-// TODO Implement CASE 1 in the switch statement 
 // TODO Add user class and the serach class to remove complexity in this file
 // TODO Validate Inputs 
 
