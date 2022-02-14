@@ -3,7 +3,7 @@
 public class Program 
 {
     public List<VideoMediaEntry> videoMediaEntries = new List<VideoMediaEntry>();
-
+    public List<VideoMediaCreator> videoMediaCreators = new List<VideoMediaCreator>();
 
     public static void Main(string[] args)
     {
@@ -35,12 +35,14 @@ public class Program
                     break;
                 case "1":
                     Console.WriteLine("What movie/tvShow do you want to search for?");
-                    VideoOptions(VideoSearch(videoMediaEntries, Console.ReadLine()));
+                    VideoOptions(VideoSearchByTitle(videoMediaEntries, Console.ReadLine()));
                     break;
                 case "2":
                     // TODO Add search by genres
                     break;
                 case "3":
+                    Console.WriteLine("Who are you searching for?");
+                    CreatorOptions(SearchforPerson(Console.ReadLine()));
                     // TODO Add search for people
                     break;
                 default:
@@ -49,7 +51,7 @@ public class Program
         }
     }
 
-    VideoMediaEntry VideoSearch(List<VideoMediaEntry> videoEntries, string title)
+    VideoMediaEntry VideoSearchByTitle(List<VideoMediaEntry> videoEntries, string title)
     {
         foreach (VideoMediaEntry videoMediaEntry in videoMediaEntries)
         {
@@ -61,6 +63,21 @@ public class Program
         }
 
         Console.WriteLine("Sorry what you are looking for does not exist");
+        return null;
+    }
+
+    VideoMediaCreator SearchforPerson(string name)
+    {
+        foreach (VideoMediaCreator videoMediaCreator in videoMediaCreators)
+        {
+            if (videoMediaCreator.Name.Equals(name))
+            {
+                bool repeat = true;
+                return videoMediaCreator;
+            }
+        }
+
+        Console.WriteLine("Sorry the person you are looking ");
         return null;
     }
 
@@ -98,6 +115,40 @@ public class Program
             }
         }
     }
+
+    void CreatorOptions(VideoMediaCreator videoMediaCreator)
+    {
+        if (videoMediaCreator != null)
+        {
+            bool repeat = true;
+
+            while (repeat)
+            {
+                Console.WriteLine("What do you want to do?");
+                Console.WriteLine("View details = 1");
+                Console.WriteLine("View Projects they worked on = 2");
+                Console.WriteLine("exit = 0");
+
+                switch (Console.ReadLine())
+                {
+                    case "0":
+                        repeat = false;
+                        break;
+                    case "1":
+                        Console.WriteLine("Decription = " + videoMediaCreator.Description);
+                        break;
+                    case "2":
+                        foreach (VideoMedia media in videoMediaCreator.MediaWorkedOn)
+                        {
+                            Console.WriteLine(media.Title);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
     void AddVideoReview(VideoMediaEntry entry)
     {
         Console.WriteLine("What rating out of ten would you give the movie?");
@@ -123,12 +174,17 @@ public class Program
 
     void AddEntries()
     {
+        Actor actor = new Actor("christian bale");
+
         VideoMediaReview testReview = new VideoMediaReview(5, "Movie Bad :(");
 
         Movie movie = new Movie("dark knight");
         movie.Genre = "action";
         movie.RunTime = new TimeOnly(2, 32);
         movie.synopsis = "Batman punches Joker";
+
+        actor.MediaWorkedOn.Add(movie);
+        videoMediaCreators.Add(actor);
 
         VideoMediaEntry entry = new VideoMediaEntry(movie);
         entry.Reviews.Add(testReview);
