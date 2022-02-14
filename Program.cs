@@ -23,10 +23,10 @@ public class Program
         while (repeat)
         {
             Console.WriteLine("What do you want to do?");
-            Console.WriteLine("Search for movie/TV show = 1");
-            Console.WriteLine("Search through genre = 2");
-            Console.WriteLine("Search for Actor/Writer/Director = 3");
-            Console.WriteLine("exit = 0");
+            Console.WriteLine("[1] Search for movie/TV show");
+            Console.WriteLine("[2] Search through genre");
+            Console.WriteLine("[3] Search for Actor/Writer/Director");
+            Console.WriteLine("[0] exit");
 
             switch (Console.ReadLine())
             {
@@ -43,7 +43,6 @@ public class Program
                 case "3":
                     Console.WriteLine("Who are you searching for?");
                     CreatorOptions(SearchforPerson(Console.ReadLine()));
-                    // TODO Add search for people
                     break;
                 default:
                     break;
@@ -57,7 +56,6 @@ public class Program
         {
             if (videoMediaEntry.Video.Title.Equals(title))
             {
-                bool repeat = true;
                 return videoMediaEntry;
             }
         }
@@ -72,7 +70,6 @@ public class Program
         {
             if (videoMediaCreator.Name.Equals(name))
             {
-                bool repeat = true;
                 return videoMediaCreator;
             }
         }
@@ -90,10 +87,10 @@ public class Program
             while (repeat)
             {
                 Console.WriteLine("What do you want to do?");
-                Console.WriteLine("View details = 1");
-                Console.WriteLine("Add a review = 2");
-                Console.WriteLine("View Reviews = 3");
-                Console.WriteLine("exit = 0");
+                Console.WriteLine("[1] View details");
+                Console.WriteLine("[2] Add a review");
+                Console.WriteLine("[3] View Reviews");
+                Console.WriteLine("[0] exit");
 
                 switch (Console.ReadLine())
                 {
@@ -125,9 +122,9 @@ public class Program
             while (repeat)
             {
                 Console.WriteLine("What do you want to do?");
-                Console.WriteLine("View details = 1");
-                Console.WriteLine("View Projects they worked on = 2");
-                Console.WriteLine("exit = 0");
+                Console.WriteLine("[1] View details");
+                Console.WriteLine("[2] View Projects they worked on");
+                Console.WriteLine("[0] exit");
 
                 switch (Console.ReadLine())
                 {
@@ -138,9 +135,13 @@ public class Program
                         Console.WriteLine("Decription = " + videoMediaCreator.Description);
                         break;
                     case "2":
-                        foreach (VideoMedia media in videoMediaCreator.MediaWorkedOn)
+                        ListMedia(videoMediaCreator.MediaWorkedOn);
+
+                        Console.WriteLine("Do you want to find out more about these any of these movies? [y/n]");
+                        if (Console.ReadLine().Equals("y"))
                         {
-                            Console.WriteLine(media.Title);
+                            Console.WriteLine("Which one? [enter number code]");
+                            VideoOptions(videoMediaCreator.MediaWorkedOn[int.Parse(Console.ReadLine())]);
                         }
                         break;
                     default:
@@ -149,6 +150,17 @@ public class Program
             }
         }
     }
+
+    void ListMedia(List<VideoMediaEntry> videoMediaEntries)
+    {
+        int index = 0;
+        foreach (VideoMediaEntry entry in videoMediaEntries)
+        {
+            Console.WriteLine("[" + index + "] " + entry.Video.Title);
+            index++;
+        }
+    }
+
     void AddVideoReview(VideoMediaEntry entry)
     {
         Console.WriteLine("What rating out of ten would you give the movie?");
@@ -183,18 +195,25 @@ public class Program
         movie.RunTime = new TimeOnly(2, 32);
         movie.synopsis = "Batman punches Joker";
 
-        actor.MediaWorkedOn.Add(movie);
+        Movie movie2 = new Movie("american psysho");
+
+
         videoMediaCreators.Add(actor);
 
         VideoMediaEntry entry = new VideoMediaEntry(movie);
         entry.Reviews.Add(testReview);
+
+        VideoMediaEntry entry2 = new VideoMediaEntry(movie2);
+
+        actor.MediaWorkedOn.Add(entry);
+        actor.MediaWorkedOn.Add(entry2);
 
         videoMediaEntries.Add(entry);
     }
 }
 
 // TODO search by actor/director/writer and genre
-// TODO allow user to add a movie if the one they are searching for doesn't exist
+// TODO allow admin user to add a movie if the one they are searching for doesn't exist
 // TODO Add user class and the serach class to remove complexity in this file
 // TODO Validate Inputs 
 

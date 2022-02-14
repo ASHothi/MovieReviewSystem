@@ -10,13 +10,13 @@ namespace MediaReviewSystem
     {
         public string? Name { get; set; }
         public string? Description { get; set; }
-        public List<VideoMedia> MediaWorkedOn { get; private set; }
+        public List<VideoMediaEntry> MediaWorkedOn { get; private set; }
 
         public VideoMediaCreator(string name) 
         {
             Name = name;
             Description = "EMPTY";
-            MediaWorkedOn = new List<VideoMedia>();
+            MediaWorkedOn = new List<VideoMediaEntry>();
         }
     }
 }
