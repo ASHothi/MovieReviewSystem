@@ -7,13 +7,15 @@ public class Program
 
     public static void Main(string[] args)
     {
-        Program program = new Program();
+        /*Program program = new Program();
        
         /// this method is only used for testing
         program.AddEntries();
         ///
 
-        program.GiveOptions();
+        program.GiveOptions();*/
+        
+        Application.Run(new Form1());
     }
 
     void GiveOptions()
@@ -212,7 +214,7 @@ public class Program
     }
 }
 
-// TODO search by actor/director/writer and genre
+// TODO search by genre
 // TODO allow admin user to add a movie if the one they are searching for doesn't exist
 // TODO Add user class and the serach class to remove complexity in this file
 // TODO Validate Inputs 
