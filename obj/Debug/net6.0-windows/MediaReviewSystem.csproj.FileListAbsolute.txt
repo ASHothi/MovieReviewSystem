@@ -31,3 +31,4 @@ C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\bin\Debug\net
 C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\bin\Debug\net6.0-windows\Ubiety.Dns.Core.dll
 C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\bin\Debug\net6.0-windows\ZstdNet.dll
 C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\bin\Debug\net6.0-windows\MySqlConnector.dll
+C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\obj\Debug\net6.0-windows\MediaReviewSystem.UserControl1.resources

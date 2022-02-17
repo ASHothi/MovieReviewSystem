@@ -13,9 +13,19 @@ namespace MediaReviewSystem
 {
     public partial class Form1 : Form
     {
+        public List<Panel> listPanel = new List<Panel>();
+
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //Program program = new Program();
+            listPanel.Add(panel1);
+            listPanel.Add(panel2);
+            panel2.BringToFront();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -30,15 +40,60 @@ namespace MediaReviewSystem
             MySqlDataReader dataReader;
             String sql, Output = "";
 
-            sql = "Select * from actor";
+            string movie = textBox1.Text;
+
+            sql = "SELECT * FROM movie WHERE title = '" + movie + "'";
 
             command = new MySqlCommand(sql, cnn);
 
             dataReader = command.ExecuteReader();
-
+            //ACADEMY DINOSAUR
             while (dataReader.Read())
             {
-                Output = Output + dataReader.GetString(0) + " " + dataReader.GetString(1) + " " + dataReader.GetString(2) + "\n";
+                Output += "Title: " + dataReader.GetString(1) + "\n"; 
+
+
+                if (!dataReader.IsDBNull(2))
+                {
+                    Output += "Duration: " + dataReader.GetString(2);
+                }
+                else
+                {
+                    Output += "Duration: UNKOWN";
+                }
+
+                Output += "\n";
+
+                if (!dataReader.IsDBNull(3))
+                {
+                    Output += "Release Date: " + dataReader.GetString(3);
+                }
+                else
+                {
+                    Output += "Release Date: UNKOWN";
+                }
+
+                Output += "\n";
+
+                if (!dataReader.IsDBNull(4))
+                {
+                    Output += "Age Rating: " + dataReader.GetString(4);
+                }
+                else
+                {
+                    Output += "Age Rating: UNKOWN";
+                }
+
+                Output += "\n";
+
+                if (!dataReader.IsDBNull(5))
+                {
+                    Output += "Description: " + dataReader.GetString(5);
+                }
+                else
+                {
+                    Output += "Description: UNKOWN";
+                }
             }
 
             MessageBox.Show(Output);
@@ -47,13 +102,10 @@ namespace MediaReviewSystem
             cnn.Close();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
+            string movie = textBox1.Text;
+
             string connetionString;
             MySqlConnection cnn;
             connetionString = @"Data Source=localhost;Initial Catalog=reviewdb;User ID=root;Password=root";
@@ -64,7 +116,7 @@ namespace MediaReviewSystem
             MySqlDataAdapter adapter = new MySqlDataAdapter();
             String sql = "";
 
-            sql = "insert into director(id_director, first_name, last_name, description) values(default, 'chris', 'nolan', 'he made dark knight')";
+            sql = "INSERT INTO director(id_director, first_name, last_name, description) VALUES(default, 'chris', 'nolan', 'he made dark knight')";
 
             command = new MySqlCommand(sql, cnn);
 
@@ -116,12 +168,38 @@ namespace MediaReviewSystem
             adapter.UpdateCommand.ExecuteNonQuery();
             command.Dispose();
             cnn.Close();
-            string actor = textBox1.Text;
+            
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            //movie
+            panel1.BringToFront();
+            label1.Text = "search for movie";
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            UserControl1 control = new UserControl1();
+            control.Dock = DockStyle.Fill;
+            this.Controls.Add(control);
+            panel2.Hide();
+            panel1.Hide();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            panel2.BringToFront();
         }
     }
 }
