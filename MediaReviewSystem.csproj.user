@@ -2,10 +2,22 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="AddReview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="MediaDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="SelectionScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControl2.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>

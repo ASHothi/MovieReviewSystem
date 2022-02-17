@@ -11,22 +11,25 @@ using MySql.Data.MySqlClient;
 
 namespace MediaReviewSystem
 {
-    public partial class UserControl1 : UserControl
+    public partial class UserControl2 : UserControl
     {
         public Panel panel;
 
-        public UserControl1()
+        public UserControl2()
         {
             InitializeComponent();
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            panel.Show();
+            this.Visible = false;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            string title = textBox3.Text;
-            string runTime = textBox2.Text;
-            string releaseDate = textBox1.Text;
-            string age_rating = textBox4.Text;
-            string description = richTextBox1.Text;
+            string id = textBox1.Text;
+            string title = textBox2.Text;
 
             string connetionString;
             MySqlConnection cnn;
@@ -38,21 +41,14 @@ namespace MediaReviewSystem
             MySqlDataAdapter adapter = new MySqlDataAdapter();
             String sql = "";
 
-            sql = "INSERT INTO movie(id_movie, title, run_time, release_date, age_rating, description) VALUES(default, '" + title + "', '" 
-                + runTime + "', '" + releaseDate + "', '" + age_rating + "', '" + description + "')";
+            sql = "DELETE FROM movie WHERE id_movie = '" + id + "'";
 
             command = new MySqlCommand(sql, cnn);
 
-            adapter.InsertCommand = new MySqlCommand(sql, cnn);
-            adapter.InsertCommand.ExecuteNonQuery();
+            adapter.DeleteCommand = new MySqlCommand(sql, cnn);
+            adapter.DeleteCommand.ExecuteNonQuery();
             command.Dispose();
             cnn.Close();
-        }
-       
-        private void button2_Click(object sender, EventArgs e)
-        {
-            panel.Show();
-            this.Visible = false;
         }
     }
 }

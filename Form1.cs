@@ -23,14 +23,15 @@ namespace MediaReviewSystem
         private void Form1_Load(object sender, EventArgs e)
         {
             //Program program = new Program();
-            listPanel.Add(panel1);
+            //listPanel.Add(panel1);
+            //panel1.Hide();
             listPanel.Add(panel2);
             panel2.BringToFront();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string connetionString;
+            /*string connetionString;
             MySqlConnection cnn;
             connetionString = @"Data Source=localhost;Initial Catalog=reviewdb;User ID=root;Password=root";
             cnn = new MySqlConnection(connetionString);
@@ -99,12 +100,12 @@ namespace MediaReviewSystem
             MessageBox.Show(Output);
             dataReader.Close();
             command.Dispose();
-            cnn.Close();
+            cnn.Close();*/
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string movie = textBox1.Text;
+            /*string movie = textBox1.Text;
 
             string connetionString;
             MySqlConnection cnn;
@@ -123,12 +124,12 @@ namespace MediaReviewSystem
             adapter.InsertCommand = new MySqlCommand(sql, cnn);
             adapter.InsertCommand.ExecuteNonQuery();
             command.Dispose();
-            cnn.Close();
+            cnn.Close();*/
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string connetionString;
+            /*string connetionString;
             MySqlConnection cnn;
             connetionString = @"Data Source=localhost;Initial Catalog=reviewdb;User ID=root;Password=root";
             cnn = new MySqlConnection(connetionString);
@@ -145,7 +146,12 @@ namespace MediaReviewSystem
             adapter.DeleteCommand = new MySqlCommand(sql, cnn);
             adapter.DeleteCommand.ExecuteNonQuery();
             command.Dispose();
-            cnn.Close();
+            cnn.Close();*/
+            UserControl2 control = new UserControl2();
+            control.Dock = DockStyle.Fill;
+            this.Controls.Add(control);
+            control.panel = panel2;
+            panel2.Hide();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -184,8 +190,14 @@ namespace MediaReviewSystem
         private void button5_Click_1(object sender, EventArgs e)
         {
             //movie
-            panel1.BringToFront();
-            label1.Text = "search for movie";
+            SelectionScreen control = new SelectionScreen("movie");
+            control.Dock = DockStyle.Fill;
+            this.Controls.Add(control);
+            control.panel = panel2;
+            panel2.Hide();
+            //panel1.BringToFront();
+            //panel1.Show();
+            //label1.Text = "search for movie";
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -193,8 +205,9 @@ namespace MediaReviewSystem
             UserControl1 control = new UserControl1();
             control.Dock = DockStyle.Fill;
             this.Controls.Add(control);
+            control.panel = panel2;
             panel2.Hide();
-            panel1.Hide();
+            //panel1.Hide();
         }
 
         private void button7_Click(object sender, EventArgs e)
