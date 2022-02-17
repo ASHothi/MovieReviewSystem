@@ -18,6 +18,7 @@ namespace MediaReviewSystem
         public MediaDetails(string details, string mediaType, string id, string title)
         {
             InitializeComponent();
+            this.mediaType = mediaType;
             richTextBox1.Text = details;
             this.id = id;
             label1.Text = title;

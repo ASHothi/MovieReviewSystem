@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace MediaReviewSystem
 {
@@ -29,7 +30,33 @@ namespace MediaReviewSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            string connetionString;
+            MySqlConnection cnn;
+            connetionString = @"Data Source=localhost;Initial Catalog=reviewdb;User ID=root;Password=root";
+            cnn = new MySqlConnection(connetionString);
+            cnn.Open();
+
+            MySqlCommand command;
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            String sql = "";
+
+            if (mediaType.Equals("movie"))
+            {
+                sql = "INSERT INTO review(id_review, title, score, written_review, movie_id_movie, television_id_television) " +
+                      "VALUES(default, '" + textBox1.Text + "', " + textBox2.Text + ", '" + richTextBox1.Text + "', " + ID + ", null)";
+            }
+            else if (mediaType.Equals("television"))
+            {
+                sql = "INSERT INTO review(id_review, title, score, written_review, movie_id_movie, television_id_television) " +
+                      "VALUES(default, '" + textBox1.Text + "', " + textBox2.Text + ", '" + richTextBox1.Text + "', null, " + ID + ")";
+            }
+
+            command = new MySqlCommand(sql, cnn);
+
+            adapter.InsertCommand = new MySqlCommand(sql, cnn);
+            adapter.InsertCommand.ExecuteNonQuery();
+            command.Dispose();
+            cnn.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
