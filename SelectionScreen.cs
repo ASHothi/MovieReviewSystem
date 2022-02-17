@@ -45,7 +45,7 @@ namespace MediaReviewSystem
             //ACADEMY DINOSAUR
             while (dataReader.Read())
             {
-                Output += "ID: " + dataReader.GetString(0) + "\n" + "Title: " + dataReader.GetString(1) + "\n";
+               //Output += "ID: " + dataReader.GetString(0) + "\n" + "Title: " + dataReader.GetString(1) + "\n";
 
 
                 if (!dataReader.IsDBNull(2))
@@ -91,10 +91,21 @@ namespace MediaReviewSystem
                 }
             }
 
-            MessageBox.Show(Output);
+            if (searchTarget.Equals("movie"))
+            {
+                MediaDetails control = new MediaDetails(Output, searchTarget, "" + dataReader.GetString(0), "" + dataReader.GetString(1).ToUpper());
+                control.Dock = DockStyle.Fill;
+                Parent.Controls.Add(control);
+                this.Visible = false;
+               
+            }
+
+            //MessageBox.Show(Output);
             dataReader.Close();
             command.Dispose();
             cnn.Close();
+
+
         }
 
         private void button2_Click(object sender, EventArgs e)

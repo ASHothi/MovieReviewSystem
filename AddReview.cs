@@ -26,5 +26,16 @@ namespace MediaReviewSystem
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.ParentForm.Controls[ParentForm.Controls.Count - 2].Visible = true;
+            this.ParentForm.Controls.RemoveAt(ParentForm.Controls.Count - 1);
+        }
     }
 }
