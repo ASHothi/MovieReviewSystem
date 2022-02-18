@@ -16,51 +16,64 @@ namespace MediaReviewSystem
         public Panel panel;
         public string searchTarget;
 
-        public SelectionScreen(string searchTarget)
+        public SelectionScreen()
         {
             InitializeComponent();
-            this.searchTarget = searchTarget;
-            //label2.Text = searchTarget + " search";
+            RBMovie.Checked = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             SetSearchTarget();
-            string connetionString;
-            MySqlConnection cnn;
-            connetionString = @"Data Source=localhost;Initial Catalog=reviewdb;User ID=root;Password=root";
-            cnn = new MySqlConnection(connetionString);
+
+            string connetionString = @"Data Source=localhost;Initial Catalog=reviewdb;User ID=root;Password=root";
+            MySqlConnection cnn = new MySqlConnection(connetionString);
             cnn.Open();
 
-            MySqlCommand command;
-            MySqlDataReader dataReader;
-            String sql, Output = "";
+            MySqlDataAdapter MyDA = new MySqlDataAdapter();
 
-            string title = textBox1.Text;
+            string sqlSelectAll = "";
 
-            sql = "SELECT * FROM " + searchTarget + " WHERE title = '" + title + "'";
-
-            command = new MySqlCommand(sql, cnn);
-
-            dataReader = command.ExecuteReader();
-
-            if (searchTarget.Equals("movie"))
+            switch (searchTarget)
             {
-                Output = MovieDesc(dataReader);
-            }
-            else if (searchTarget.Equals("television"))
-            {
-                Output = TelevisionDesc(dataReader);
+                case "movie":
+                    sqlSelectAll = "SELECT title FROM movie";
+                    if (!String.IsNullOrEmpty(textBox1.Text))
+                    {
+                        sqlSelectAll += " WHERE title = '" + textBox1.Text + "'" ;
+                    }
+                    break;
+                case "television":
+                    sqlSelectAll = "SELECT title FROM television";
+                    if (!String.IsNullOrEmpty(textBox1.Text))
+                    {
+                        sqlSelectAll += " WHERE title = '" + textBox1.Text + "'";
+                    }
+                    break;
+                case "actor":
+                    sqlSelectAll = "SELECT * FROM actor";
+                    break;
+                case "writer":
+                    sqlSelectAll = "SELECT * FROM writer";
+                    break;
+                case "director":
+                    sqlSelectAll = "SELECT * FROM director";
+                    break;
+                default:
+                    break;
             }
 
-            MediaDetails control = new MediaDetails(Output, searchTarget, "" + dataReader.GetString(0), "" + dataReader.GetString(1).ToUpper());
-            control.Dock = DockStyle.Fill;
-            Parent.Controls.Add(control);
-            this.Visible = false;
+            MyDA.SelectCommand = new MySqlCommand(sqlSelectAll, cnn);
 
-            //MessageBox.Show(Output);
-            dataReader.Close();
-            command.Dispose();
+            DataTable table = new DataTable();
+            MyDA.Fill(table);
+
+            BindingSource bSource = new BindingSource();
+            bSource.DataSource = table;
+
+            dataGridView1.DataSource = bSource;
+
+            MyDA.Dispose();
             cnn.Close();
         }
 
@@ -209,6 +222,41 @@ namespace MediaReviewSystem
             {
                 searchTarget = "director";
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string connetionString = @"Data Source=localhost;Initial Catalog=reviewdb;User ID=root;Password=root";
+            MySqlConnection cnn = new MySqlConnection(connetionString);
+            cnn.Open();
+
+            MySqlCommand command;
+            MySqlDataReader dataReader;
+            String sql, Output = "";
+
+            sql = "SELECT * FROM " + searchTarget + " WHERE title = '" + dataGridView1.CurrentCell.Value.ToString() + "'";
+
+            command = new MySqlCommand(sql, cnn);
+
+            dataReader = command.ExecuteReader();
+
+            if (searchTarget.Equals("movie"))
+            {
+                Output = MovieDesc(dataReader);
+            }
+            else if (searchTarget.Equals("television"))
+            {
+                Output = TelevisionDesc(dataReader);
+            }
+
+            MediaDetails control = new MediaDetails(Output, searchTarget, "" + dataReader.GetString(0), "" + dataReader.GetString(1).ToUpper());
+            control.Dock = DockStyle.Fill;
+            Parent.Controls.Add(control);
+            this.Visible = false;
+
+            dataReader.Close();
+            command.Dispose();
+            cnn.Close();
         }
     }
 }

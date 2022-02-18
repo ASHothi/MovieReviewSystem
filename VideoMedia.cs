@@ -31,9 +31,6 @@ namespace MediaReviewSystem
             }
         }
 
-
-
-
-
+        public int Test(int num) { return num; }
     }
 }

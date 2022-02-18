@@ -32,7 +32,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.RBMovie = new System.Windows.Forms.RadioButton();
             this.RBTV = new System.Windows.Forms.RadioButton();
@@ -44,7 +43,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(229, 92);
+            this.button1.Location = new System.Drawing.Point(305, 92);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -54,7 +53,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(229, 286);
+            this.button2.Location = new System.Drawing.Point(305, 340);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
@@ -66,7 +65,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(64, 92);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(155, 23);
+            this.textBox1.Size = new System.Drawing.Size(235, 23);
             this.textBox1.TabIndex = 2;
             // 
             // label1
@@ -75,18 +74,9 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(64, 63);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 15);
+            this.label1.Size = new System.Drawing.Size(52, 15);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Search";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(130, 63);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 15);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "movie search";
+            this.label1.Text = "SEARCH";
             // 
             // dataGridView1
             // 
@@ -94,13 +84,14 @@
             this.dataGridView1.Location = new System.Drawing.Point(64, 121);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(316, 213);
             this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // RBMovie
             // 
             this.RBMovie.AutoSize = true;
-            this.RBMovie.Location = new System.Drawing.Point(334, 121);
+            this.RBMovie.Location = new System.Drawing.Point(396, 121);
             this.RBMovie.Name = "RBMovie";
             this.RBMovie.Size = new System.Drawing.Size(63, 19);
             this.RBMovie.TabIndex = 6;
@@ -111,7 +102,7 @@
             // RBTV
             // 
             this.RBTV.AutoSize = true;
-            this.RBTV.Location = new System.Drawing.Point(334, 146);
+            this.RBTV.Location = new System.Drawing.Point(396, 146);
             this.RBTV.Name = "RBTV";
             this.RBTV.Size = new System.Drawing.Size(69, 19);
             this.RBTV.TabIndex = 7;
@@ -122,7 +113,7 @@
             // RBActor
             // 
             this.RBActor.AutoSize = true;
-            this.RBActor.Location = new System.Drawing.Point(334, 171);
+            this.RBActor.Location = new System.Drawing.Point(396, 171);
             this.RBActor.Name = "RBActor";
             this.RBActor.Size = new System.Drawing.Size(54, 19);
             this.RBActor.TabIndex = 8;
@@ -133,7 +124,7 @@
             // RBWriter
             // 
             this.RBWriter.AutoSize = true;
-            this.RBWriter.Location = new System.Drawing.Point(334, 196);
+            this.RBWriter.Location = new System.Drawing.Point(396, 196);
             this.RBWriter.Name = "RBWriter";
             this.RBWriter.Size = new System.Drawing.Size(57, 19);
             this.RBWriter.TabIndex = 9;
@@ -144,7 +135,7 @@
             // RBDirector
             // 
             this.RBDirector.AutoSize = true;
-            this.RBDirector.Location = new System.Drawing.Point(334, 221);
+            this.RBDirector.Location = new System.Drawing.Point(396, 221);
             this.RBDirector.Name = "RBDirector";
             this.RBDirector.Size = new System.Drawing.Size(67, 19);
             this.RBDirector.TabIndex = 10;
@@ -162,7 +153,6 @@
             this.Controls.Add(this.RBTV);
             this.Controls.Add(this.RBMovie);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button2);
@@ -181,7 +171,6 @@
         private Button button2;
         private TextBox textBox1;
         private Label label1;
-        private Label label2;
         private DataGridView dataGridView1;
         private RadioButton RBMovie;
         private RadioButton RBTV;
