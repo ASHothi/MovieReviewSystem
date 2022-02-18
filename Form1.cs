@@ -214,5 +214,14 @@ namespace MediaReviewSystem
         {
             panel2.BringToFront();
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            SelectionScreen control = new SelectionScreen("television");
+            control.Dock = DockStyle.Fill;
+            this.Controls.Add(control);
+            control.panel = panel2;
+            panel2.Hide();
+        }
     }
 }

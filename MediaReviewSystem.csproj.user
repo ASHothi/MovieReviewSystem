@@ -11,6 +11,9 @@
     <Compile Update="MediaDetails.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="ReviewViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="SelectionScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>

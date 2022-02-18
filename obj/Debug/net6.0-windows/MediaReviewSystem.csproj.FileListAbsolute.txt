@@ -36,3 +36,4 @@ C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\obj\Debug\net
 C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\obj\Debug\net6.0-windows\MediaReviewSystem.SelectionScreen.resources
 C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\obj\Debug\net6.0-windows\MediaReviewSystem.AddReview.resources
 C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\obj\Debug\net6.0-windows\MediaReviewSystem.MediaDetails.resources
+C:\Users\Anandbir\source\repos\MediaReviewSystem\MediaReviewSystem\obj\Debug\net6.0-windows\MediaReviewSystem.ReviewViewer.resources
