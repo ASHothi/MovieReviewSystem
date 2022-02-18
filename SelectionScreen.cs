@@ -51,13 +51,25 @@ namespace MediaReviewSystem
                     }
                     break;
                 case "actor":
-                    sqlSelectAll = "SELECT * FROM actor";
+                    sqlSelectAll = "SELECT first_name FROM actor";
+                    if (!String.IsNullOrEmpty(textBox1.Text))
+                    {
+                        sqlSelectAll += " WHERE first_name = '" + textBox1.Text + "'";
+                    }
                     break;
                 case "writer":
-                    sqlSelectAll = "SELECT * FROM writer";
+                    sqlSelectAll = "SELECT first_name FROM writer";
+                    if (!String.IsNullOrEmpty(textBox1.Text))
+                    {
+                        sqlSelectAll += " WHERE first_name = '" + textBox1.Text + "'";
+                    }
                     break;
                 case "director":
-                    sqlSelectAll = "SELECT * FROM director";
+                    sqlSelectAll = "SELECT first_name FROM director";
+                    if (!String.IsNullOrEmpty(textBox1.Text))
+                    {
+                        sqlSelectAll += " WHERE first_name = '" + textBox1.Text + "'";
+                    }
                     break;
                 default:
                     break;
@@ -200,6 +212,24 @@ namespace MediaReviewSystem
             return output;
         }
 
+        public string PersonDesc(MySqlDataReader dataReader)
+        {
+            string output = "";
+            dataReader.Read();
+            
+                if (!dataReader.IsDBNull(3))
+            {
+                output += "Description: " + dataReader.GetString(3);
+            }
+            else
+            {
+                output += "Description: UNKOWN";
+            }
+            
+
+            return output;
+        }
+
         public void SetSearchTarget()
         {
             if (RBMovie.Checked == true)
@@ -234,7 +264,14 @@ namespace MediaReviewSystem
             MySqlDataReader dataReader;
             String sql, Output = "";
 
-            sql = "SELECT * FROM " + searchTarget + " WHERE title = '" + dataGridView1.CurrentCell.Value.ToString() + "'";
+            if (searchTarget.Equals("movie") || searchTarget.Equals("television"))
+            {
+                sql = "SELECT * FROM " + searchTarget + " WHERE title = '" + dataGridView1.CurrentCell.Value.ToString() + "'";
+            }
+            else
+            {
+                sql = "SELECT * FROM " + searchTarget + " WHERE first_name = '" + dataGridView1.CurrentCell.Value.ToString() + "'";
+            }
 
             command = new MySqlCommand(sql, cnn);
 
@@ -248,15 +285,31 @@ namespace MediaReviewSystem
             {
                 Output = TelevisionDesc(dataReader);
             }
+            else if (searchTarget.Equals("actor") || searchTarget.Equals("writer") || searchTarget.Equals("director"))
+            {
+                Output = PersonDesc(dataReader);
+            }
 
-            MediaDetails control = new MediaDetails(Output, searchTarget, "" + dataReader.GetString(0), "" + dataReader.GetString(1).ToUpper());
-            control.Dock = DockStyle.Fill;
-            Parent.Controls.Add(control);
-            this.Visible = false;
+            if (searchTarget.Equals("movie") || searchTarget.Equals("television"))
+            {
+                MediaDetails control = new MediaDetails(Output, searchTarget, "" + dataReader.GetString(0), "" + dataReader.GetString(1).ToUpper());
+                control.Dock = DockStyle.Fill;
+                Parent.Controls.Add(control);
+                this.Visible = false;
+            }
+            else 
+            {
+                PersonDetails control = new PersonDetails(dataReader.GetString(0), searchTarget, dataReader.GetString(1) + " " + dataReader.GetString(2), Output);
+                control.Dock = DockStyle.Fill;
+                Parent.Controls.Add(control);
+                this.Visible = false;
+            }
+
 
             dataReader.Close();
             command.Dispose();
             cnn.Close();
         }
+
     }
 }

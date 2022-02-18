@@ -43,12 +43,12 @@ namespace MediaReviewSystem
             if (mediaType.Equals("movie"))
             {
                 sql = "INSERT INTO review(id_review, title, score, written_review, movie_id_movie, television_id_television) " +
-                      "VALUES(default, '" + textBox1.Text + "', " + textBox2.Text + ", '" + richTextBox1.Text + "', " + ID + ", null)";
+                      "VALUES(default, '" + textBox1.Text + "', " + numericUpDown1.Value + ", '" + richTextBox1.Text + "', " + ID + ", null)";
             }
             else if (mediaType.Equals("television"))
             {
                 sql = "INSERT INTO review(id_review, title, score, written_review, movie_id_movie, television_id_television) " +
-                      "VALUES(default, '" + textBox1.Text + "', " + textBox2.Text + ", '" + richTextBox1.Text + "', null, " + ID + ")";
+                      "VALUES(default, '" + textBox1.Text + "', " + numericUpDown1.Value + ", '" + richTextBox1.Text + "', null, " + ID + ")";
             }
 
             command = new MySqlCommand(sql, cnn);

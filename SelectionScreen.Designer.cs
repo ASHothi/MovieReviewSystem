@@ -38,12 +38,14 @@
             this.RBActor = new System.Windows.Forms.RadioButton();
             this.RBWriter = new System.Windows.Forms.RadioButton();
             this.RBDirector = new System.Windows.Forms.RadioButton();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(305, 92);
+            this.button1.Location = new System.Drawing.Point(305, 60);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -53,7 +55,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(305, 340);
+            this.button2.Location = new System.Drawing.Point(305, 308);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
@@ -63,16 +65,16 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(64, 92);
+            this.textBox1.Location = new System.Drawing.Point(30, 60);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(235, 23);
+            this.textBox1.Size = new System.Drawing.Size(269, 23);
             this.textBox1.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(64, 63);
+            this.label1.Location = new System.Drawing.Point(30, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 15);
             this.label1.TabIndex = 3;
@@ -81,17 +83,17 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(64, 121);
+            this.dataGridView1.Location = new System.Drawing.Point(30, 89);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(316, 213);
+            this.dataGridView1.Size = new System.Drawing.Size(350, 213);
             this.dataGridView1.TabIndex = 5;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // RBMovie
             // 
             this.RBMovie.AutoSize = true;
-            this.RBMovie.Location = new System.Drawing.Point(396, 121);
+            this.RBMovie.Location = new System.Drawing.Point(396, 89);
             this.RBMovie.Name = "RBMovie";
             this.RBMovie.Size = new System.Drawing.Size(63, 19);
             this.RBMovie.TabIndex = 6;
@@ -102,7 +104,7 @@
             // RBTV
             // 
             this.RBTV.AutoSize = true;
-            this.RBTV.Location = new System.Drawing.Point(396, 146);
+            this.RBTV.Location = new System.Drawing.Point(396, 114);
             this.RBTV.Name = "RBTV";
             this.RBTV.Size = new System.Drawing.Size(69, 19);
             this.RBTV.TabIndex = 7;
@@ -113,7 +115,7 @@
             // RBActor
             // 
             this.RBActor.AutoSize = true;
-            this.RBActor.Location = new System.Drawing.Point(396, 171);
+            this.RBActor.Location = new System.Drawing.Point(396, 139);
             this.RBActor.Name = "RBActor";
             this.RBActor.Size = new System.Drawing.Size(54, 19);
             this.RBActor.TabIndex = 8;
@@ -124,7 +126,7 @@
             // RBWriter
             // 
             this.RBWriter.AutoSize = true;
-            this.RBWriter.Location = new System.Drawing.Point(396, 196);
+            this.RBWriter.Location = new System.Drawing.Point(396, 164);
             this.RBWriter.Name = "RBWriter";
             this.RBWriter.Size = new System.Drawing.Size(57, 19);
             this.RBWriter.TabIndex = 9;
@@ -135,7 +137,7 @@
             // RBDirector
             // 
             this.RBDirector.AutoSize = true;
-            this.RBDirector.Location = new System.Drawing.Point(396, 221);
+            this.RBDirector.Location = new System.Drawing.Point(396, 189);
             this.RBDirector.Name = "RBDirector";
             this.RBDirector.Size = new System.Drawing.Size(67, 19);
             this.RBDirector.TabIndex = 10;
@@ -143,10 +145,41 @@
             this.RBDirector.Text = "Director";
             this.RBDirector.UseVisualStyleBackColor = true;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Horror",
+            "Thriller"});
+            this.comboBox1.Location = new System.Drawing.Point(396, 224);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 23);
+            this.comboBox1.TabIndex = 11;
+            this.comboBox1.Text = "Genre";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "English",
+            "Spanish",
+            "French",
+            "Japanese "});
+            this.comboBox2.Location = new System.Drawing.Point(396, 253);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 23);
+            this.comboBox2.TabIndex = 12;
+            this.comboBox2.Text = "language";
+            // 
             // SelectionScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.RBDirector);
             this.Controls.Add(this.RBWriter);
             this.Controls.Add(this.RBActor);
@@ -177,5 +210,7 @@
         private RadioButton RBActor;
         private RadioButton RBWriter;
         private RadioButton RBDirector;
+        private ComboBox comboBox1;
+        private ComboBox comboBox2;
     }
 }
